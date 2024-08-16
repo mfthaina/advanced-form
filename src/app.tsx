@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Button } from "./components/ui/button"
 
 
 
@@ -20,64 +21,72 @@ export function App() {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label>First name</Label>
-              <Input />
+              <Input type="text" />
             </div>
             <div>
               <Label>Last name</Label>
-              <Input />
+              <Input type="text" />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label>Email address</Label>
-              <Input />
+              <Input type="email" />
             </div>
             <div>
               <Label>Company</Label>
-              <Input />
+              <Input type="text" />
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-4 items-end">
             <div>
               <Label>Date of birth</Label>
               <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Theme" />
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Month" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="light">Light</SelectItem>
-                  <SelectItem value="dark">Dark</SelectItem>
-                  <SelectItem value="system">System</SelectItem>
+                  {Array(12).fill(1).map((_,index)=>{
+                    const value = String(index+1).padStart(2,"0");
+                    return(
+                      <SelectItem id={String(index)} value={value}>{value}</SelectItem>
+                    )
+                  })}
                 </SelectContent>
               </Select>
             </div>
             <div>
-              <Label>Date of birth</Label>
               <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Theme" />
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Day" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="light">Light</SelectItem>
-                  <SelectItem value="dark">Dark</SelectItem>
-                  <SelectItem value="system">System</SelectItem>
+                  {Array(31).fill(1).map((_,index)=>{
+                    const value = String(index+1).padStart(2,"0");
+                    return(
+                      <SelectItem id={String(index)} value={value}>{value}</SelectItem>
+                    )
+                  })}
                 </SelectContent>
               </Select>
             </div>
             <div>
-              <Label>Date of birth</Label>
               <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Theme" />
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Year" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="light">Light</SelectItem>
-                  <SelectItem value="dark">Dark</SelectItem>
-                  <SelectItem value="system">System</SelectItem>
+                  {Array(150).fill(1).map((_,index)=>{
+                    const value = String(index+1901).padStart(4,"0");
+                    return(
+                      <SelectItem id={String(index)} value={value}>{value}</SelectItem>
+                    )
+                  })}
                 </SelectContent>
               </Select>
             </div>
           </div>
+          <Button className="mt-2" type="submit">REGISTER</Button>
         </form>
       </div>
     </div>
